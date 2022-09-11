@@ -10,26 +10,7 @@ import { trpc } from '../utils/trpc'
 
 // types
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-
-const Profile: React.FC<{ appID: string; logout: () => void }> = ({
-  appID,
-  logout,
-}) => {
-  const { data: user, isLoading, error } = trpc.useQuery(['auth.getUserData'])
-  useEffect(() => {
-    require('@passageidentity/passage-elements/passage-profile')
-  }, [])
-
-  useEffect(() => {
-    if (error && error.data?.code === 'FORBIDDEN') {
-      logout()
-      Router.push('/')
-    }
-  }, [error, logout])
-
-  if (isLoading) return <div />
-  return <passage-profile app-id={appID} />
-}
+import Profile from '../components/Profile.jsx'
 
 const Dashboard = ({
   appID,
