@@ -7,10 +7,10 @@ import { useEffect } from 'react'
 // project files
 import { env } from '../env/server.mjs'
 import { trpc } from '../utils/trpc'
+import Profile from '../components/Profile'
 
 // types
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import Profile from '../components/Profile.jsx'
 
 const Dashboard = ({
   appID,
