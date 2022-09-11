@@ -1,0 +1,64 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+model Example {
+    id String @id @default(cuid())
+} 
+
+model User {
+    id            String    @id @default(cuid())
+    passageID     String    @unique
+    name          String?
+    email         String?   @unique
+}
+
+model CardArt {
+    id          Int         @id @default(autoincrement())
+    image       String 
+    isHolo      Boolean
+    cardId      Int 
+    uniqueId    Int
+    card        Card        @relation(fields: [cardId], references: [id])
+    unique      Unique      @relation(fields: [uniqueId], references: [id])
+}
+
+model Card {
+    id          Int         @id @default(autoincrement()) 
+    action_a    String 
+    action_b    String
+    action_c    String 
+    action_d    String
+    font        String
+    label       String 
+    quantity    Int         @default(1)
+    shield      Int 
+    characterId Int
+    character   Character   @relation(fields: [characterId], references: [id])
+    art         CardArt[] 
+}
+
+model Unique {
+    id          Int         @id @default(autoincrement())
+    label       String 
+    description String
+    quantity    Int         @default(0)
+    characterId Int 
+    character   Character   @relation(fields: [characterId], references: [id])
+    art         CardArt[]
+}
+
+model Character {
+    id          Int     @id @default(autoincrement())
+    name        String 
+    type        String 
+    health      Int 
+    image_back  String
+    cards       Card[]
+    uniques     Unique[]
+}

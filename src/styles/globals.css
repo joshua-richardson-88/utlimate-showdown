@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+passage-auth {
+  /* Passage Container Styles */
+  --passage-container-background: transparent;
+  --passage-container-max-width: 220px;
+  --passage-container-margin: auto;
+  --passage-container-padding: 30px 30px 20px;
+  --passage-error-color: #ff0000;
+
+  /* Body Font Styles */
+  --passage-body-font-family: 'DM Sans', BlinkMacSystemFont, -apple-system,
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --passage-body-font-size: 14px;
+  --passage-body-font-weight: 400;
+  --passage-body-text-color: #f5f5f5;
+
+  /* Header Font Styles */
+  --passage-header-font-family: 'DM Sans', BlinkMacSystemFont, -apple-system,
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --passage-header-font-weight: 700;
+  --passage-header-text-color: #f5f5f5;
+  --passage-header-font-size: 24px;
+
+  /* Button Styles */
+  --passage-button-font-size: 16px;
+  --passage-button-font-weight: 400;
+  --passage-button-width: 50%;
+  --passage-button-border-radius: 75px;
+
+  /* Color Palette */
+  --passage-onprimary-color: #fff; /* text color on primary control background */
+  --passage-primary-color: #0369a1; /* main color used for controls */
+
+  --passage-onhover-color: #fff;
+  --passage-hover-color: #4d4d4d;
+
+  --passage-onactive-color: #fff;
+  --passage-active-color: #6b6b6b;
+
+  /* Email and Phone Input Styles */
+  --passage-control-border-radius: 5px;
+  --passage-control-border-color: #dbdbdb;
+  --app-text: #171717;
+}
