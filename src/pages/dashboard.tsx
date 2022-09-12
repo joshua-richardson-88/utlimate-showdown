@@ -7,11 +7,10 @@ import { useEffect } from 'react'
 // project files
 import { env } from '../env/server.mjs'
 import { trpc } from '../utils/trpc'
-import Profile from '../components/Profile'
+import CardView from '../components/Cards'
 
 // types
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import CardView from '../components/Cards.jsx'
 
 const Loading = () => (
   <div className='border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto'>
