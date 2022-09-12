@@ -10,25 +10,9 @@ import { trpc } from '../utils/trpc'
 import CardView from '../components/Cards'
 
 // types
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import Navigation from '../components/Navigation'
 
-const Loading = () => (
-  <div className='border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto'>
-    <div className='animate-pulse flex space-x-4'>
-      <div className='rounded-full bg-slate-700 h-10 w-10'></div>
-      <div className='flex-1 space-y-6 py-1'>
-        <div className='h-2 bg-slate-700 rounded'></div>
-        <div className='space-y-3'>
-          <div className='grid grid-cols-3 gap-4'>
-            <div className='h-2 bg-slate-700 rounded col-span-2'></div>
-            <div className='h-2 bg-slate-700 rounded col-span-1'></div>
-          </div>
-          <div className='h-2 bg-slate-700 rounded'></div>
-        </div>
-      </div>
-    </div>
-  </div>
-)
 const Unauthorized = () => (
   <div className='w-screen h-screen p-4 flex flex-col items-center text-white'>
     <h1 className='text-3xl mb-8 font-bold'>Unauthorized</h1>
@@ -45,28 +29,24 @@ const Unauthorized = () => (
 const Dashboard = ({
   appID,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const {
-    data: isAuthenticated,
-    isLoading,
-    error,
-  } = trpc.useQuery(['auth.isAuthenticated'])
+  const { data: isAuthenticated, error } = trpc.useQuery([
+    'auth.isAuthenticated',
+  ])
   const passage = useMemo(() => new Passage(appID), [])
 
-  // useEffect(() => {
-  //   if (error && error.data?.code === 'FORBIDDEN') {
-  //     passage.signOut()
-  //     Router.push('/')
-  //   }
-  // }, [passage, error])
-
-  if (isLoading) return <Loading />
+  useEffect(() => {
+    if (error && error.data?.code === 'FORBIDDEN') {
+      passage.signOut()
+      Router.push('/')
+    }
+  }, [passage, error])
 
   return (
-    <div className='w-screen h-screen bg-neutral-700 text-white p-10'>
-      <div className='text-3xl'>
-        {isAuthenticated ? 'Welcome' : 'Unauthorized'}
+    <div className='w-screen h-screen bg-neutral-700 text-white flex flex-col'>
+      <Navigation appID={appID} />
+      <div className='grow p-8'>
+        {isAuthenticated ? <CardView /> : <Unauthorized />}
       </div>
-      {isAuthenticated ? <CardView /> : <Unauthorized />}
     </div>
   )
 }

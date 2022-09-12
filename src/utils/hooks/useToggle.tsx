@@ -8,7 +8,7 @@ export default function useToggle(defaultValue: boolean) {
 
   const [value, setValue] = useState(defaultValue)
 
-  const toggleValue = (x?: boolean) => setValue((p) => (x != null ? x : p))
+  const toggleValue = (x?: boolean) => setValue((p) => (x != null ? x : !p))
 
   return [value, toggleValue] as const
 }
