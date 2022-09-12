@@ -70,7 +70,7 @@ const Content: React.FC<{
 const Home: NextPage = ({
   appId,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const [isOpen, setOpen] = useToggle(false)
+  const [isOpen, setOpen] = useState(false)
   useEffect(() => {
     require('@passageidentity/passage-elements/passage-auth')
   }, [])
@@ -95,14 +95,22 @@ const Home: NextPage = ({
                 className='focus:outline-none focus-visible:ring-4 ring-neutral-900 rounded-sm ring-offset-4 ring-offset-navy-600 dark:ring-offset-navy-500 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-9 z-50 hover:opacity-70 transition-opacity'
                 aria-label='Go to homepage'
               >
-                <LogoPlaceholderIcon className='w-32 md:w-48 lg:w-64 text-neutral-300 cursor-pointer' />
+                <div className='text-neutral-400 cursor-pointer flex flex-row'>
+                  <LogoPlaceholderIcon className='w-6' />
+                  <h1 className='ml-2 text-neutral-200 font-title tracking-widest'>
+                    Ultimate Showdown
+                  </h1>
+                </div>
               </a>
             </Link>
             <button
               aria-expanded={`${isOpen}`}
               aria-label='Open Menu'
               type='button'
-              onClick={() => setOpen()}
+              onClick={() => {
+                console.log('clicked')
+                setOpen((p) => !p)
+              }}
               className='lg:hidden focus:outline-none focus-visible:ring-4 ring-neutral-900 rounded-sm ring-offset-4 ring-offset-navy-600 dark:ring-offset-navy-500 text-neutral-900 hover:text-neutral-600 dark:text-neutral-300 dark:hover:text-neutral-400 transition-colors'
             >
               <MenuIcon className='h-8 w-8' />
@@ -122,31 +130,13 @@ const Home: NextPage = ({
                   Home
                 </a>
               </Link>
-              <Link href='/contact'>
-                <a
-                  href='/contact'
-                  className='lg:mr-auto py-1 px-6 focus:outline-none focus-visible:ring-4 ring-neutral-900 rounded-sm ring-offset-4 ring-offset-navy-600 dark:ring-offset-navy-500 text-neutral-900 hover:text-neutral-600 dark:text-neutral-300 dark:hover:text-neutral-400 transition-colors'
-                  role='menuitem'
-                >
-                  Contact
-                </a>
-              </Link>
               <Link href='/login'>
                 <a
                   href='/login'
-                  className='py-1 px-6 focus:outline-none focus-visible:ring-4 ring-neutral-900 rounded-sm ring-offset-4 ring-offset-navy-600 dark:ring-offset-navy-500 text-neutral-900 hover:text-neutral-600 dark:text-neutral-300 dark:hover:text-neutral-400 transition-colors'
-                  role='menuitem'
-                >
-                  Login
-                </a>
-              </Link>
-              <Link href='/signup'>
-                <a
-                  href='/signup'
                   className='py-2 px-6 rounded-md bg-purple-400 hover:shadow-xl transition-shadow focus:outline-none focus-visible:ring-4 ring-neutral-900 ring-offset-4 ring-offset-navy-600 dark:ring-offset-navy-500 text-neutral-900 font-bold'
                   role='menuitem'
                 >
-                  Sign Up
+                  Login
                 </a>
               </Link>
             </div>

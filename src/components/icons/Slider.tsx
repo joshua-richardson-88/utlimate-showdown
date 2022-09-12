@@ -64,7 +64,6 @@ const Slider = () => {
 
   useEffect(() => {
     const t = setInterval(() => {
-      console.log('setting current value')
       setCurrent((p) => (p === icons.length - 1 ? 0 : p + 1))
     }, 2000)
     return () => clearInterval(t)
