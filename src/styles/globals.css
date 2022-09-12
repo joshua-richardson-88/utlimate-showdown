@@ -28,6 +28,12 @@
   }
 }
 
+html,
+body {
+  overscroll-behavior-y: none;
+  position: fixed;
+  overflow: hidden;
+}
 passage-auth {
   /* Passage Container Styles */
   --passage-container-background: transparent;
