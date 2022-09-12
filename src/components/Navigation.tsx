@@ -38,7 +38,7 @@ const Nav: React.FC<{ appID: string }> = ({ appID }) => {
           <Link href='/dashboard'>
             <span
               role='menuitem'
-              className='py-1 px-6 focus:outline-none focus-visible:ring-4 ring-neutral-900 rounded-sm ring-offset-4 ring-offset-navy-600 dark:ring-offset-navy-500 text-neutral-900 hover:text-neutral-100 hover:text-neutral-600 dark:text-neutral-300 dark:hover:text-neutral-400 transition-colors select-none cursor-pointer'
+              className='py-1 px-6 focus:outline-none focus-visible:ring-4 ring-neutral-900 rounded-sm ring-offset-4 ring-offset-navy-600 dark:ring-offset-navy-500 text-neutral-900 hover:text-neutral-600 dark:text-neutral-300 dark:hover:text-neutral-400 transition-colors select-none cursor-pointer'
             >
               Dashboard
             </span>
