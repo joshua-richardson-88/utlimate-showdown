@@ -29,12 +29,16 @@ const Loading = () => (
     </div>
   </div>
 )
-const ViewLogout = () => (
-  <div>
-    <p className='mb-4'>
-      You have not logged in and cannot view the dashboard.
-    </p>
-    <Link href='/'>Login to continue</Link>
+const Unauthorized = () => (
+  <div className='w-screen h-screen p-4 flex flex-col items-center text-white'>
+    <h1 className='text-3xl mb-8 font-bold'>Unauthorized</h1>
+    <p>You are not logged in, either refresh after a few moments or</p>
+    <div className='flex flex-row'>
+      <div className='text-white underline decoration-white hover:text-blue-100'>
+        <Link href='/'>Login</Link>
+      </div>
+      <div>&nbsp;to continue</div>
+    </div>
   </div>
 )
 
@@ -62,7 +66,7 @@ const Dashboard = ({
       <div className='text-3xl'>
         {isAuthenticated ? 'Welcome' : 'Unauthorized'}
       </div>
-      {isAuthenticated ? <CardView /> : <ViewLogout />}
+      {isAuthenticated ? <CardView /> : <Unauthorized />}
     </div>
   )
 }

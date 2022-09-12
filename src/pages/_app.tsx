@@ -1,4 +1,5 @@
 // src/pages/_app.tsx
+import { useEffect } from 'react'
 import { withTRPC } from '@trpc/next'
 import type { AppRouter } from '../server/router'
 import type { AppType } from 'next/dist/shared/lib/utils'
@@ -6,6 +7,20 @@ import superjson from 'superjson'
 import '../styles/globals.css'
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  useEffect(() => {
+    const theme = localStorage.getItem('theme')
+    const shouldSetDarkTheme =
+      theme === 'dark' ||
+      (theme == null &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+
+    document.documentElement.classList.remove(
+      shouldSetDarkTheme ? 'light' : 'dark',
+    )
+    document.documentElement.classList.add(
+      shouldSetDarkTheme ? 'dark' : 'light',
+    )
+  }, [])
   return <Component {...pageProps} />
 }
 
