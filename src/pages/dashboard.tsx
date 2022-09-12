@@ -11,6 +11,33 @@ import Profile from '../components/Profile'
 
 // types
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import CardView from '../components/Cards.jsx'
+
+const Loading = () => (
+  <div className='border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto'>
+    <div className='animate-pulse flex space-x-4'>
+      <div className='rounded-full bg-slate-700 h-10 w-10'></div>
+      <div className='flex-1 space-y-6 py-1'>
+        <div className='h-2 bg-slate-700 rounded'></div>
+        <div className='space-y-3'>
+          <div className='grid grid-cols-3 gap-4'>
+            <div className='h-2 bg-slate-700 rounded col-span-2'></div>
+            <div className='h-2 bg-slate-700 rounded col-span-1'></div>
+          </div>
+          <div className='h-2 bg-slate-700 rounded'></div>
+        </div>
+      </div>
+    </div>
+  </div>
+)
+const ViewLogout = () => (
+  <div>
+    <p className='mb-4'>
+      You have not logged in and cannot view the dashboard.
+    </p>
+    <Link href='/'>Login to continue</Link>
+  </div>
+)
 
 const Dashboard = ({
   appID,
@@ -29,29 +56,14 @@ const Dashboard = ({
     }
   }, [passage, error])
 
-  if (isLoading) return
+  if (isLoading) return <Loading />
 
   return (
     <div className='w-screen h-screen bg-neutral-700 text-white p-10'>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <div className='text-3xl'>
-            {isAuthenticated ? 'Welcome' : 'Unauthorized'}
-          </div>
-          {isAuthenticated ? (
-            <Profile appID={appID} logout={passage.signOut} />
-          ) : (
-            <div>
-              <p className='mb-4'>
-                You have not logged in and cannot view the dashboard.
-              </p>
-              <Link href='/'>Login to continue</Link>
-            </div>
-          )}
-        </>
-      )}
+      <div className='text-3xl'>
+        {isAuthenticated ? 'Welcome' : 'Unauthorized'}
+      </div>
+      {isAuthenticated ? <CardView /> : <ViewLogout />}
     </div>
   )
 }
