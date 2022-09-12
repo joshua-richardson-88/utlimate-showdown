@@ -14,7 +14,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Navigation from '../components/Navigation'
 
 const Unauthorized = () => (
-  <div className='w-screen h-screen p-4 flex flex-col items-center text-white'>
+  <div className='w-full h-full p-4 flex flex-col items-center text-white'>
     <h1 className='text-3xl mb-8 font-bold'>Unauthorized</h1>
     <p>You are not logged in, either refresh after a few moments or</p>
     <div className='flex flex-row'>
@@ -34,12 +34,12 @@ const Dashboard = ({
   ])
   const passage = useMemo(() => new Passage(appID), [])
 
-  useEffect(() => {
-    if (error && error.data?.code === 'FORBIDDEN') {
-      passage.signOut()
-      Router.push('/')
-    }
-  }, [passage, error])
+  // useEffect(() => {
+  //   if (error && error.data?.code === 'FORBIDDEN') {
+  //     passage.signOut()
+  //     Router.push('/')
+  //   }
+  // }, [passage, error])
 
   return (
     <div className='w-screen h-screen bg-neutral-700 text-white flex flex-col'>

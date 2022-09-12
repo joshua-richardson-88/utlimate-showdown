@@ -2,7 +2,7 @@
 import Head from 'next/head'
 
 // project files
-import Slider from '../components/icons/Slider'
+import Slider from '../components/Slider'
 
 // types
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
