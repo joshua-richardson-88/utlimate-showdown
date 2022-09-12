@@ -10,7 +10,7 @@ const Nav: React.FC<{ appID: string }> = ({ appID }) => {
   const toggle = () => setOpen((p) => !p)
 
   return (
-    <nav className='p-4 bg-navy-600 dark:bg-navy-500'>
+    <nav className='w-full h-[72px] p-4 bg-navy-600 dark:bg-navy-500'>
       <div className='container mx-auto flex items-center justify-between'>
         <Link href='/'>
           <div className='text-neutral-400 cursor-pointer flex flex-row w-64'>

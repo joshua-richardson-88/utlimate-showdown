@@ -34,15 +34,15 @@ const Dashboard = ({
   ])
   const passage = useMemo(() => new Passage(appID), [])
 
-  // useEffect(() => {
-  //   if (error && error.data?.code === 'FORBIDDEN') {
-  //     passage.signOut()
-  //     Router.push('/')
-  //   }
-  // }, [passage, error])
+  useEffect(() => {
+    if (error && error.data?.code === 'FORBIDDEN') {
+      passage.signOut()
+      Router.push('/')
+    }
+  }, [passage, error])
 
   return (
-    <div className='w-screen h-screen bg-neutral-700 text-white flex flex-col'>
+    <div className='w-screen h-screen bg-neutral-700 text-white flex flex-col overflow-hidden'>
       <Navigation appID={appID} />
       <div className='grow p-8'>
         {isAuthenticated ? <CardView /> : <Unauthorized />}
