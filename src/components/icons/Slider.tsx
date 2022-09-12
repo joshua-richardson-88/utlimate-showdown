@@ -1,8 +1,6 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
-import { useTimeout } from '../../utils/hooks'
-
 type Icon = { id: string; source: string; bg: string; border: string }
 const icons: Icon[] = [
   {
@@ -69,8 +67,6 @@ const Slider = () => {
       console.log('setting current value')
       setCurrent((p) => (p === icons.length - 1 ? 0 : p + 1))
     }, 2000)
-
-    console.log(current)
     return () => clearInterval(t)
   }, [icons])
 

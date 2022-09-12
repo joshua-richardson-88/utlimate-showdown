@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Router from 'next/router'
 import { Passage } from '@passageidentity/passage-js'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 
 // project files
 import { env } from '../env/server.mjs'
@@ -50,7 +50,7 @@ const Dashboard = ({
     isLoading,
     error,
   } = trpc.useQuery(['auth.isAuthenticated'])
-  const passage = new Passage(appID)
+  const passage = useMemo(() => new Passage(appID), [])
 
   useEffect(() => {
     if (error && error.data?.code === 'FORBIDDEN') {

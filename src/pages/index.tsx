@@ -1,6 +1,6 @@
 // modules
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { Passage } from '@passageidentity/passage-js'
 
@@ -18,12 +18,12 @@ const Content: React.FC<{
 }> = ({ appID }) => {
   const [username, setUsername] = useState<string>()
   const [authState, setAuthState] = useState<boolean>()
-  const passage = new Passage(appID)
+  const passage = useMemo(() => new Passage(appID), [])
 
-  const logout = () => {
+  const logout = useCallback(() => {
     passage.signOut()
     setAuthState(false)
-  }
+  }, [])
 
   useEffect(() => {
     if (username == null) {

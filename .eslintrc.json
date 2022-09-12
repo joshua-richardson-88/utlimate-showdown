@@ -2,6 +2,7 @@
   "extends": ["next/core-web-vitals"],
   "rules": {
     "react/jsx-filename-extension": [0],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "@next/next/no-html-link-for-pages": "off"
   }
 }
