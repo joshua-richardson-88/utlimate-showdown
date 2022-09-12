@@ -9,7 +9,7 @@ const CardView = () => {
   }, [data])
   return (
     <div className='w-full h-[calc(100vh - 72px - 4rem)] container mx-auto bg-black/10 rounded-sm flex flex-row items-stretch'>
-      <div className='w-1/5 h-[86.2vh] p-2 bg-black/10 grid grid-rows-[2rem_1fr_2.5rem] gap-3 overflow-hidden'>
+      <div className='w-full md:w-1/5 h-[86.2vh] p-2 bg-black/10 grid grid-rows-[2rem_1fr_2.5rem] gap-3 overflow-hidden'>
         <h2 className='text-2xl text-center'>Characters</h2>
         <div className='grow flex flex-col gap-2 overflow-y-auto scrollbar'>
           {data &&
