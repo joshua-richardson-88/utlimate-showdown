@@ -52,12 +52,12 @@ const Dashboard = ({
   } = trpc.useQuery(['auth.isAuthenticated'])
   const passage = useMemo(() => new Passage(appID), [])
 
-  useEffect(() => {
-    if (error && error.data?.code === 'FORBIDDEN') {
-      passage.signOut()
-      Router.push('/')
-    }
-  }, [passage, error])
+  // useEffect(() => {
+  //   if (error && error.data?.code === 'FORBIDDEN') {
+  //     passage.signOut()
+  //     Router.push('/')
+  //   }
+  // }, [passage, error])
 
   if (isLoading) return <Loading />
 
