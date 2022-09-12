@@ -26,14 +26,13 @@
   .scrollbar:hover::-webkit-scrollbar-button {
     display: none;
   }
+  .overkill {
+    overscroll-behavior-y: none;
+    position: fixed;
+    overflow: hidden;
+  }
 }
 
-html,
-body {
-  overscroll-behavior-y: none;
-  position: fixed;
-  overflow: hidden;
-}
 passage-auth {
   /* Passage Container Styles */
   --passage-container-background: transparent;

@@ -44,7 +44,7 @@ const Login: NextPage = ({
   }, [username])
 
   return (
-    <div className='w-screen h-screen flex flex-col text-neutral-900 bg-white dark:text-neutral-200 dark:bg-neutral-800'>
+    <div className='w-screen h-screen flex flex-col text-neutral-900 bg-white dark:text-neutral-200 dark:bg-neutral-800 overkill'>
       <Navigation appID={appID} />
       <div className='flex grow flex-col jusftify-center items-center p-8'>
         {authState ? (

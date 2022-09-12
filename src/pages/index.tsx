@@ -23,7 +23,7 @@ const Home: NextPage = ({
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <div className='max-w-[2000px] w-screen h-screen mx-auto text-neutral-900 bg-white dark:text-neutral-200 dark:bg-neutral-800'>
+      <div className='max-w-[2000px] w-screen h-screen mx-auto text-neutral-900 bg-white dark:text-neutral-200 dark:bg-neutral-800 overkill'>
         <Navigation appID={appID} />
         <header className='relative h-3/4 overflow-hidden'>
           <div className='absolute inset-0 w-full h-full block bg-black bg-[url(/assets/stars.png)] bg-repeat bg-[top center]'></div>
