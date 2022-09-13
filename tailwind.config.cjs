@@ -33,7 +33,8 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        twinkle: 'twinleFrames 200s linear infinite',
+        twinkle: 'twinkleFrames 200s linear infinite',
+        wiggle: 'wiggle 200ms ease-in-out',
       },
       colors: {
         navy: {
@@ -54,7 +55,11 @@ module.exports = {
         title: ['Megrim'],
       },
       keyframes: {
-        twinleFrames: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        twinkleFrames: {
           from: { backgroundPosition: '0 0' },
           to: { backgroundPosition: '-10000px 5000px' },
         },
