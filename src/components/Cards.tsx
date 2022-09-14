@@ -122,6 +122,7 @@ const CardView = () => {
   useEffect(() => {
     if (data != null && data[0] != null) setActiveTab(data[0].id)
   }, [data])
+
   return (
     <div className='w-full h-[calc(100vh - 72px - 4rem)] container mx-auto bg-black/10 rounded-sm flex flex-row items-stretch'>
       <div className='w-full md:w-1/5 h-[86.2vh] shrink-0 p-2 bg-black/10 grid grid-rows-[2rem_1fr_2.5rem] gap-3 overflow-hidden'>

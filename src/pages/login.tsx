@@ -1,6 +1,6 @@
 // modules
 import Link from 'next/link'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useEffect } from 'react'
 
 // project files
 import Navigation from '../components/Navigation'

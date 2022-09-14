@@ -1,12 +1,11 @@
 // modules
 import Link from 'next/link'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useRouter } from 'next/router'
+import { useCallback } from 'react'
 // import { Passage } from '@passageidentity/passage-js'
 
 // project files
 import { useAuth, useToggle } from '../utils/hooks'
-import { trpc } from '../utils/trpc'
-import { useRouter } from 'next/router'
 import { ProfileIcon } from './icons'
 
 const UserProfile: React.FC<{ appID: string }> = ({ appID }) => {

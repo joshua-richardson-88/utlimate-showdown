@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 type Icon = { id: string; source: string; bg: string; border: string }
