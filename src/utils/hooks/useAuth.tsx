@@ -28,14 +28,6 @@ const useAuth = () => {
     if (p != null) p.refresh()
   }, [p])
 
-  if (isSSR) {
-    return [
-      isLoading,
-      isAuthenticated,
-      { getToken, logout, refresh, user: info },
-    ] as const
-  }
-
   useEffect(() => {
     if (!isSSR) {
       import('@passageidentity/passage-elements/passage-user').then(
@@ -58,12 +50,7 @@ const useAuth = () => {
   return [
     isLoading,
     isAuthenticated,
-    {
-      getToken,
-      logout,
-      refresh,
-      user: info,
-    },
+    { getToken, logout, refresh, user: info },
   ] as const
 }
 export default useAuth
