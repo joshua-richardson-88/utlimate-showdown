@@ -1,11 +1,11 @@
 // modules
 import Link from 'next/link'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Passage } from '@passageidentity/passage-js'
 
 // project files
-import { env } from '../env/server.mjs'
 import Navigation from '../components/Navigation'
+import { env } from '../env/server.mjs'
+import useAuth from '../utils/hooks/useAuth'
 
 // types
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
@@ -13,44 +13,20 @@ import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 const Login: NextPage = ({
   appID,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const [username, setUsername] = useState<string>()
-  const [authState, setAuthState] = useState<boolean>(false)
-  const passage = useMemo(() => new Passage(appID), [])
-
-  const logout = useCallback(() => {
-    passage.signOut()
-    setAuthState(false)
-  }, [])
+  const [isLoading, isAuthenticated, { user, logout }] = useAuth()
 
   useEffect(() => {
     require('@passageidentity/passage-elements/passage-auth')
   }, [])
-  useEffect(() => {
-    if (username == null) {
-      passage
-        .getCurrentUser()
-        .userInfo()
-        .then((info) => {
-          console.log('info: ', info)
-          if (info == null || info.email == null || info.phone == null) {
-            logout()
-            return
-          }
-
-          setAuthState(true)
-          setUsername(info?.email == null ? info?.phone : info.email)
-        })
-    }
-  }, [username])
 
   return (
     <div className='w-screen h-screen flex flex-col text-neutral-900 bg-white dark:text-neutral-200 dark:bg-neutral-800 overkill'>
       <Navigation appID={appID} />
       <div className='flex grow flex-col jusftify-center items-center p-8'>
-        {authState ? (
+        {!isLoading && isAuthenticated ? (
           <div className='w-64'>
             <h2 className='text-2xl'>Welcome back</h2>
-            <p>{username}</p>
+            <p>{user && user.email}</p>
             <Link href='/dashboard'>
               <button
                 type='button'

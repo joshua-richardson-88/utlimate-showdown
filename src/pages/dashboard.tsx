@@ -1,13 +1,13 @@
 // modules
 import Link from 'next/link'
 import Router from 'next/router'
-import { Passage } from '@passageidentity/passage-js'
 import { useEffect, useMemo } from 'react'
 
 // project files
+import CardView from '../components/Cards'
 import { env } from '../env/server.mjs'
 import { trpc } from '../utils/trpc'
-import CardView from '../components/Cards'
+import useAuth from '../utils/hooks/useAuth'
 
 // types
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
@@ -29,10 +29,12 @@ const Unauthorized = () => (
 const Dashboard = ({
   appID,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { data: isAuthenticated, error } = trpc.useQuery([
-    'auth.isAuthenticated',
-  ])
-  const passage = useMemo(() => new Passage(appID), [])
+  const [isLoading, isAuthenticated] = useAuth()
+  // const { data: isAuthenticated, error } = trpc.useQuery([
+  //   'auth.isAuthenticated',
+  // ])
+  // const passage = useMemo(() => {}, [])
+  // const passage = useMemo(() => new Passage(appID), [])
 
   // useEffect(() => {
   //   if (error && error.data?.code === 'FORBIDDEN') {
@@ -45,7 +47,7 @@ const Dashboard = ({
     <div className='w-screen h-screen bg-neutral-700 text-white flex flex-col overflow-hidden overkill'>
       <Navigation appID={appID} />
       <div className='grow p-8'>
-        {isAuthenticated ? <CardView /> : <Unauthorized />}
+        {!isLoading && isAuthenticated ? <CardView /> : <Unauthorized />}
       </div>
     </div>
   )

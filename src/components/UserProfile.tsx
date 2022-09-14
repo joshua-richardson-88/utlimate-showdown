@@ -1,38 +1,25 @@
 // modules
 import Link from 'next/link'
 import { useCallback, useEffect, useMemo } from 'react'
-import { Passage } from '@passageidentity/passage-js'
+// import { Passage } from '@passageidentity/passage-js'
 
 // project files
-import { useToggle } from '../utils/hooks'
+import { useAuth, useToggle } from '../utils/hooks'
 import { trpc } from '../utils/trpc'
 import { useRouter } from 'next/router'
 import { ProfileIcon } from './icons'
 
 const UserProfile: React.FC<{ appID: string }> = ({ appID }) => {
+  const [isLoading, isAuthenticated, { user, logout: signout }] = useAuth()
   const router = useRouter()
   const [isOpen, toggleOpen] = useToggle(false)
-  const {
-    data: user,
-    isLoading,
-    error,
-  } = trpc.useQuery(['auth.getUserData'], { retry: false })
-  const { invalidateQueries, setQueryData } = trpc.useContext()
-  const passage = useMemo(() => new Passage(appID), [])
   const logout = useCallback(() => {
-    passage.signOut()
-    invalidateQueries(['auth.getUserData'], {
-      refetchActive: false,
-      refetchInactive: false,
-    }).then(() => {
-      router.push('/')
-    })
-  }, [invalidateQueries])
-
-  useEffect(() => console.log('user: ', user), [user])
+    signout()
+    router.push('/')
+  }, [])
 
   if (isLoading) return null
-  if (user == null || error?.data?.code === 'FORBIDDEN')
+  if (!isAuthenticated)
     return (
       <Link href='/login'>
         <span
@@ -49,7 +36,7 @@ const UserProfile: React.FC<{ appID: string }> = ({ appID }) => {
       <div className='w-full xl:hidden flex flex-col gap-4'>
         <h2 className='w-full border-b border-b-neutral-400'>Profile</h2>
         <div className='hover:bg-neutral-900/50 rounded-md px-4 py-1'>
-          <Link href='/profile'>{user.email}</Link>
+          <Link href='/profile'>{user && user.email}</Link>
         </div>
         <button
           onClick={logout}
@@ -72,7 +59,7 @@ const UserProfile: React.FC<{ appID: string }> = ({ appID }) => {
             <p className='w-full border-t border-t-neutral-400 text-left pt-4'>
               Welcome back
             </p>
-            <p>{user.email}</p>
+            <p>{user && user.email}</p>
 
             <button
               onClick={logout}
