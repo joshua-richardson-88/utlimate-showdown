@@ -65,7 +65,7 @@ const CharacterDetail: React.FC<CharDetailProps> = ({ c }) => {
   return (
     <div className='grow p-6 flex flex-col'>
       <h2 className='text-2xl font-bold'>{c.name}</h2>
-      <div className='grid grid-cols-6 m-2'>
+      <div className='grid grid-cols-5 m-2'>
         <div className='flex flex-col'>
           <span className='text-lg font-semibold border-b border-b-white'>
             Health
@@ -77,19 +77,6 @@ const CharacterDetail: React.FC<CharDetailProps> = ({ c }) => {
             Type
           </span>
           <span className='mt-2 h-4'>{c.type}</span>
-        </div>
-        <div className='flex flex-col'>
-          <span className='text-lg font-semibold border-b border-b-white'>
-            Background Color
-          </span>
-          <div className='flex justify-center mt-2 h-4'>
-            <span
-              className={`w-4 h-4 rounded-full flex justify-center`}
-              style={{ backgroundColor: c.bg_color }}
-            >
-              {c.bg_color.charAt(0) !== '#' && c.bg_color}
-            </span>
-          </div>
         </div>
         <div className='flex flex-col'>
           <span className='text-lg font-semibold border-b border-b-white'>

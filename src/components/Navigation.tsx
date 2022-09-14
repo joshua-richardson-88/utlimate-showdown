@@ -25,7 +25,7 @@ const Nav = () => {
           aria-label='Open Menu'
           type='button'
           onClick={toggle}
-          className='lg:hidden focus:outline-none focus-visible:ring-4 ring-neutral-900 rounded-sm ring-offset-4 ring-offset-navy-600 dark:ring-offset-navy-500 text-neutral-900 hover:text-neutral-600 dark:text-neutral-300 dark:hover:text-neutral-400 transition-colors'
+          className='xl:hidden focus:outline-none focus-visible:ring-4 ring-neutral-900 rounded-sm ring-offset-4 ring-offset-navy-600 dark:ring-offset-navy-500 text-neutral-900 hover:text-neutral-600 dark:text-neutral-300 dark:hover:text-neutral-400 transition-colors'
         >
           <MenuIcon className='h-8 w-8' />
         </button>
@@ -33,7 +33,7 @@ const Nav = () => {
           role='menubar'
           className={`${
             isOpen ? 'flex' : 'hidden'
-          } z-50 flex-col gap-4 pb-4 xl:pb-0 absolute right-0 left-0 top-16 bg-navy-600 dark:bg-navy-500 shadow-xl text-center text-lg items-center lg:flex lg:flex-row lg:static lg:shadow-none lg:justify-between lg:w-full`}
+          } z-50 flex-col gap-4 pb-4 xl:pb-0 absolute right-0 left-0 top-16 bg-navy-600 dark:bg-navy-500 shadow-xl text-center text-lg items-center xl:flex xl:flex-row xl:static xl:shadow-none xl:justify-between xl:w-full`}
         >
           <Link href='/dashboard'>
             <span
