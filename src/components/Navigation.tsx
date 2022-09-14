@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { LogoPlaceholderIcon, MenuIcon } from './icons'
 import UserProfile from './UserProfile'
 
-const Nav: React.FC<{ appID: string }> = ({ appID }) => {
+const Nav = () => {
   const [isOpen, setOpen] = useState(false)
   const toggle = () => setOpen((p) => !p)
 
@@ -43,7 +43,7 @@ const Nav: React.FC<{ appID: string }> = ({ appID }) => {
               Dashboard
             </span>
           </Link>
-          <UserProfile appID={appID} />
+          <UserProfile />
         </div>
       </div>
     </nav>

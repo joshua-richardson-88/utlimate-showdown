@@ -5,13 +5,10 @@ import Head from 'next/head'
 import Slider from '../components/Slider'
 
 // types
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Navigation from '../components/Navigation'
-import { env } from '../env/server.mjs'
 
-const Home: NextPage = ({
-  appID,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home: NextPage = () => {
   return (
     <>
       <Head>
@@ -24,7 +21,7 @@ const Home: NextPage = ({
       </Head>
 
       <div className='max-w-[2000px] w-screen h-screen mx-auto text-neutral-900 bg-white dark:text-neutral-200 dark:bg-neutral-800 overkill'>
-        <Navigation appID={appID} />
+        <Navigation />
         <header className='relative h-3/4 overflow-hidden'>
           <div className='absolute inset-0 w-full h-full block bg-black bg-[url(/assets/stars.png)] bg-repeat bg-[top center]'></div>
           <div className='absolute inset-0 w-full h-full block bg-transparent bg-[url(/assets/twinkling.png)] bg-repeat bg-[top center] animate-twinkle'></div>
@@ -48,11 +45,3 @@ const Home: NextPage = ({
 }
 
 export default Home
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  return {
-    props: {
-      appID: env.PASSAGE_APP_ID,
-    },
-  }
-}

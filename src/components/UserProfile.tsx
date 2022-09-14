@@ -8,7 +8,7 @@ import { useCallback } from 'react'
 import { useAuth, useToggle } from '../utils/hooks'
 import { ProfileIcon } from './icons'
 
-const UserProfile: React.FC<{ appID: string }> = ({ appID }) => {
+const UserProfile = () => {
   const [isLoading, isAuthenticated, { user, logout: signout }] = useAuth()
   const router = useRouter()
   const [isOpen, toggleOpen] = useToggle(false)

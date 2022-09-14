@@ -3,11 +3,9 @@ import Link from 'next/link'
 
 // project files
 import CardView from '../components/Cards'
-import { env } from '../env/server.mjs'
 import useAuth from '../utils/hooks/useAuth'
 
 // types
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Navigation from '../components/Navigation'
 
 const Unauthorized = () => (
@@ -23,14 +21,12 @@ const Unauthorized = () => (
   </div>
 )
 
-const Dashboard = ({
-  appID,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Dashboard = () => {
   const [isLoading, isAuthenticated] = useAuth()
 
   return (
     <div className='w-screen h-screen bg-neutral-700 text-white flex flex-col overflow-hidden overkill'>
-      <Navigation appID={appID} />
+      <Navigation />
       <div className='grow p-8'>
         {!isLoading && isAuthenticated ? <CardView /> : <Unauthorized />}
       </div>
@@ -38,11 +34,3 @@ const Dashboard = ({
   )
 }
 export default Dashboard
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  return {
-    props: {
-      appID: env.PASSAGE_APP_ID,
-    },
-  }
-}
