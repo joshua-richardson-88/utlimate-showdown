@@ -30,10 +30,10 @@ model CardArt {
 
 model Card {
     id          Int         @id @default(autoincrement()) 
-    action_a    String 
-    action_b    String
-    action_c    String 
-    action_d    String
+    action_a    Action 
+    action_b    Action
+    action_c    Action 
+    action_d    Action
     font        String
     label       String 
     quantity    Int         @default(1)
@@ -55,8 +55,10 @@ model Unique {
 
 model Character {
     id          Int     @id @default(autoincrement())
-    name        String 
-    type        String 
+    name        String  @unique
+    isHero      Boolean @default(true)
+    style_1     Playstyle  
+    style_2     Playstyle  
     health      Int 
     image_back  String
     icon        String 
@@ -64,4 +66,18 @@ model Character {
     bg_border   String
     cards       Card[]
     uniques     Unique[]
+}
+
+enum Playstyle {
+    defender
+    controller
+    leader
+    striker
+}
+enum Action {
+    damage
+    draw
+    energy
+    health
+    shield
 }
