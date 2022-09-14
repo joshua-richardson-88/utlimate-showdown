@@ -1,17 +1,18 @@
 // modules
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback } from 'react'
-// import { Passage } from '@passageidentity/passage-js'
+import { useCallback, useRef } from 'react'
 
 // project files
-import { useAuth, useToggle } from '../utils/hooks'
+import { useAuth, useClickOutside, useToggle } from '../utils/hooks'
 import { ProfileIcon } from './icons'
 
 const UserProfile = () => {
+  const [isOpen, toggleOpen] = useToggle(false)
+  const ref = useRef<HTMLDivElement>(null)
+  useClickOutside(ref, () => toggleOpen(false))
   const [isLoading, isAuthenticated, { user, logout: signout }] = useAuth()
   const router = useRouter()
-  const [isOpen, toggleOpen] = useToggle(false)
   const logout = useCallback(() => {
     signout()
     router.push('/')
@@ -31,7 +32,7 @@ const UserProfile = () => {
     )
 
   return (
-    <div>
+    <div ref={ref}>
       <div className='w-full xl:hidden flex flex-col gap-4'>
         <h2 className='w-full border-b border-b-neutral-400'>Profile</h2>
         <div className='hover:bg-neutral-900/50 rounded-md px-4 py-1'>
