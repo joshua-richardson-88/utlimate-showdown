@@ -10,6 +10,10 @@ export const serverSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
   PASSAGE_APP_ID: z.string(),
   PASSAGE_API_KEY: z.string(),
+  CLOUDINARY_NAME: z.string(),
+  CLOUDINARY_API_KEY: z.string(),
+  CLOUDINARY_API_SECRET: z.string(),
+  CLOUDINARY_URL: z.string(),
 })
 
 /**
