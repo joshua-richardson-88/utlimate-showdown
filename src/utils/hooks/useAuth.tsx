@@ -34,7 +34,7 @@ const useAuth = () => {
         ({ PassageUser }) => setP(new PassageUser()),
       )
     }
-  }, [isSSR])
+  }, [])
   useEffect(() => {
     if (p != null) {
       Promise.allSettled([p.getAuthToken(), p.userInfo()])

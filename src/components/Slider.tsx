@@ -66,7 +66,7 @@ const Slider = () => {
       setCurrent((p) => (p === icons.length - 1 ? 0 : p + 1))
     }, 4000)
     return () => clearInterval(t)
-  }, [icons])
+  }, [])
 
   return (
     <div className='absolute inset-0'>

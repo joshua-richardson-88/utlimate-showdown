@@ -21,7 +21,7 @@ const Nav = () => {
           </div>
         </Link>
         <button
-          aria-expanded={`${isOpen}`}
+          aria-expanded={isOpen}
           aria-label='Open Menu'
           type='button'
           onClick={toggle}

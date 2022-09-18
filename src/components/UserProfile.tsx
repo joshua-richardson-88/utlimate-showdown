@@ -16,7 +16,7 @@ const UserProfile = () => {
   const logout = useCallback(() => {
     signout()
     router.push('/')
-  }, [])
+  }, [router, signout])
 
   if (isLoading) return null
   if (!isAuthenticated)

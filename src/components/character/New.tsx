@@ -87,7 +87,7 @@ const ChooseInput: FC<ChooseProps<Playstyle>> = ({ title, update }) => {
 
   useEffect(() => {
     state !== 0 && update((options[state] as string).toLowerCase() as Playstyle)
-  }, [state])
+  }, [state, options, update])
   return (
     <>
       <label htmlFor={title} className='sr-only'>
@@ -165,7 +165,7 @@ const FileInput: FC<ItemProps<string | null>> = ({ title, update, value }) => {
         update(reader.result as string)
       }
     }
-  }, [fileInput])
+  }, [fileInput, update])
 
   return (
     <div className='col-span-2 lg:col-span-3 flex flex-col gap-2'>
@@ -184,14 +184,14 @@ const FileInput: FC<ItemProps<string | null>> = ({ title, update, value }) => {
           className={`${
             title === 'Icon' && 'aspect-square rounded-full '
           }overflow-hidden p-1 bg-cover bg-center w-20 self-center`}
-          src={`${previewSource}`}
+          src={previewSource}
           alt={`preview of ${title}`}
           onError={() => setPreviewError(true)}
         />
       )}
       {previewError && (
         <span className='text-red-500'>
-          Can't Preview image, unsupported file type
+          Can&apos;t Preview image, unsupported file type
         </span>
       )}
     </div>
@@ -247,7 +247,7 @@ const NewCharacter: FC<Props> = ({ set }) => {
       setBorder('#000000')
       set(0)
     }
-  }, [status])
+  }, [status, set])
 
   return (
     <div className='w-full max-w-screen-sm p-6 flex flex-col'>
